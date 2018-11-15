@@ -1,0 +1,9 @@
+/******** HOME ********/
+.jumbotron{
+  background-color: #F3160C !important; //must add !important or else it won't let you change the color
+}
+
+.home-all{
+  /* text */
+  color: white;
+}
