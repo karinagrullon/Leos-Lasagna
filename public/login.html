@@ -3,6 +3,9 @@
   <head>
     <title>Login</title>
 
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -10,18 +13,18 @@
 
   <body>
     <!-- LOGO -->
-    <center><img alt="logo" src="../images/Logo.png" width="200" height="200"/></center>
+    <img class="login-logo" alt="logo" src="../images/Logo.png" width="200" height="200"/>
 
     <!-- LOGIN FORM -->
-    <div class="container">
+    <div class="container text-center">
       <form>
         <div class="form-group">
-          <input type="loginUsername" class="form-control" id="loginUsername" aria-describedby="emailHelp" placeholder="Username">
+          <input type="loginUsername" class="form-control login-username" id="loginUsername" aria-describedby="emailHelp" placeholder="Username">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <input type="password" class="form-control login-password" id="exampleInputPassword1" placeholder="Password">
         </div>
-        <center><button type="login" class="btn btn-primary">Login</button></center>
+        <button type="button" class="btn btn-outline-danger login-btn">Login</button>
       </form>
     </div>
 

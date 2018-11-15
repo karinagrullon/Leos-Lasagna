@@ -3,6 +3,9 @@
   <head>
     <title>Leos Lasagne</title>
 
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   </head>
@@ -10,46 +13,47 @@
   <body>
 
     <!-- NAVIGATION -->
-    <nav class="navbar navbar-expand-lg">
-      <!-- LOGO -->
-      <a class="navbar-brand" href="home.html"><img alt="logo" src="../images/Logo.png" width="100" height="100"/></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse ml-auto" id="navbarNav">
-        <!-- LOGIN -->
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
-          </li>
-        </ul>
-      </div>
+
+    <nav class="navbar navbar-light">
+      <a class="navbar-brand" href="home.html">
+        <img alt="logo" src="../images/Logo.png" width="100" height="100"/>
+      </a>
+
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="login.html">Login</a>
+        </li>
+      </ul>
     </nav>
 
     <!-- BODY AFTER NAVIGATION -->
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">Would You Like To Place An Order?</h1>
-        <button type="button" class="btn btn-outline-dark center-block">Place Order</button>
-      </div>
-    </div>
+    <div class="home-all">
 
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">Try One Of Our Best Selling Lasagne</h1>
-        <!-- This part might need some back-end. Might need to go to the database to find this info-->
-        <p class="lead">(insert best selling lasagne)</p>
+      <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+          <h1 class="display-4">Would You Like To Place An Order?</h1>
+          <button type="button" class="btn btn-outline-light">Place Order</button>
+        </div>
       </div>
-    </div>
 
-    <div class="jumbotron jumbotron-fluid">
-      <div class="container">
-        <h1 class="display-4">About Us</h1>
-        <p class="lead">
-          Leo’s Lasagne actually represents three different names. The current owner is Leo. The previous owner was his father also named Leo and prior to him his grandfather also named Leo! The incredible family recipe initially created by Leo’s grandfather who lived in Nepal. After his grandfather's return from World War II grandfather Leo learned the recipe from his mother and discovered his love for cooking. Eager to share the delicious taste of the incredible family meal led to the idea to create a business and Leo’s Lasagne took off! Leo’s father continued the traditional recipe and brought it to Brooklyn,
-          New York. Leo’s father has taught him the recipe and the tradition continues to thrive!
-        </p>
+      <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+          <h1 class="display-4">Try One Of Our Best Selling Lasagne</h1>
+          <!-- This part might need some back-end. Might need to go to the database to find this info-->
+          <p class="lead">(insert best selling lasagne)</p>
+        </div>
       </div>
+
+      <div class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+          <h1 class="display-4">About Us</h1>
+          <p class="lead">
+            Leo’s Lasagne actually represents three different names. The current owner is Leo. The previous owner was his father also named Leo and prior to him his grandfather also named Leo! The incredible family recipe initially created by Leo’s grandfather who lived in Nepal. After his grandfather's return from World War II grandfather Leo learned the recipe from his mother and discovered his love for cooking. Eager to share the delicious taste of the incredible family meal led to the idea to create a business and Leo’s Lasagne took off! Leo’s father continued the traditional recipe and brought it to Brooklyn,
+            New York. Leo’s father has taught him the recipe and the tradition continues to thrive!
+          </p>
+        </div>
+      </div>
+
     </div>
 
 

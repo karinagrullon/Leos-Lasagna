@@ -1,0 +1,28 @@
+/******** HOME ********/
+.jumbotron{
+  background-color: #F2433A !important; //must add !important or else it won't let you change the color
+}
+
+.home-all{
+  /* text */
+  color: white;
+}
+
+/******** LOGIN ********/
+.login-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 1.5%;
+}
+
+.login-btn{
+  padding: 5px 30px !important;
+}
+
+.login-username, .login-password{
+  width: 70% !important;
+  margin-left: auto;
+  margin-right: auto;
+}
