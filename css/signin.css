@@ -1,0 +1,64 @@
+/**
+* @developer-Lead: David Hernandez
+* @senior-developer: J. Sanchez @mozpit
+* @team: Software Engineering Team 4 @ Lehman
+* @members: Eddy Vittini, Jhon Sanchez, Vanessa Ortiz, Melida Grullon, Madelin Arias Bueno, Rafael Velazquez, Moumouni Sawadogo, Jordan Falcon, David Hernandez
+* @description: Leo's Lasagna Project by Team 4 Fall 2018
+* @software-license: MIT
+*/
+
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-position: top;
+  background-color: #fff;
+}
+
+.container{
+    padding-top: 5%!important;
+    max-width: 330px!important;
+}
+
+.form-signin {
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #f96566!important;
+    border-color: #f96566!important;
+}
+
+label{
+   color: #ebebeb!important;
+}
