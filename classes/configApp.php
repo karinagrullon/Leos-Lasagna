@@ -28,7 +28,7 @@ class configApp {
 	var $software_name = 'Leos Lasagna Order Delivery Tracking System';
 	var $software_version = '1.0';
 	var $copyright_1 = 'MIT ';
-	var $copyright_2 = ' License';
+	var $copyright_2 = 'License';
 	var $parent_company = 'Team 4 @ Lehman College';
 	var $app_desktop = "http://leos.linuxquaterly.com/";
 	var $app_url_mobile = "http://leos.linuxquaterly.com/";

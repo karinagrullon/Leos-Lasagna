@@ -33,8 +33,8 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
          <br/>
 				 <a href="views/registerUser.php">Register</a>
-
       </form>
+					<?php echo $_SESSION['err_msg']; ?>
     </div> <!-- /container -->
 
   </body>

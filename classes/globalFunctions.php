@@ -113,7 +113,7 @@ class globalFunctions{
 	}
 
 	public function validatePassword ( $passwd, $hashed_pwd ){
-		 return crypt($passwd, $hashed_pwd) == $hashed_pwd;
+		    return crypt($passwd, $hashed_pwd) == $hashed_pwd;
 	}
 
 	public function setupCookie( $email, $ip, $digest, $status, $h, $d, $l, $p ){

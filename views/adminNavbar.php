@@ -8,7 +8,6 @@
 * @software-license: MIT
 */
 -->
-
 <!-- NAVIGATION -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #fff!important;">
   <a class="navbar-brand" href="home.php">
@@ -41,5 +40,14 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Track Deliveries" aria-label="Search">
       <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
     </form>
+    <div id="user"></div>
+    <!-- PFOILE -->
+    			<div class="image_outer_container">
+    				<div class="green_icon"></div>
+    				<div class="image_inner_container">
+              <script>$('#user').load('viewUser.php');</script>
+    				</div>
+    			</div>
+    <!-- PROFILE -->
   </div>
 </nav>

@@ -12,7 +12,7 @@ timeOutObj = setTimeout(function(){
     localStorage.clear();
     window.location = '../views/logout.php?logout=1';
 
-}, 840000);   //840000 will expire after twenty minutes
+}, 300000);   //840000 will expire after twenty minutes
 
 $(document).click(function(){
   if(typeof timeOutObj != "undefined") {

@@ -27,6 +27,8 @@
     $connectDB = new connectDB();
     $routeApp = new configApp();
     $globalFunctions = new globalFunctions();
+
+
     $digest = $_COOKIE['loginID'];
     $ip = $_SESSION['ipAddress'];
     $hash = $_SESSSION['session_hash'];

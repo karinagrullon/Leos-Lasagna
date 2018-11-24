@@ -12,7 +12,7 @@ define( 'RESTRICTED', true );
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__)  . $ds . '..') . $ds;
 $sessions = "{$base_dir}services{$ds}sessions.php";
-$cookies = "{$base_dir}services{$ds}processCookie.php";
+//$cookies = "{$base_dir}services{$ds}processCookie.php";
 
 require($sessions);
 //require($cookies);
@@ -35,6 +35,7 @@ $footer = file_get_contents('footer.php');
 	/* begin navigation structure */
 	echo $navbar;
 	/* end navigation structure */
+
 	echo $body;
 
 

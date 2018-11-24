@@ -39,17 +39,16 @@ if ( $login and $password ){
 
 			$validate_user = $globalFunctions->validatePassword($password, $hashed_password);
 
-			$_SESSION['id'] = $user_id;
-			$_SESSION['name'] = $user_name;
 			$_SESSION['client_id'] = $user_client_id;
 			$_SESSION['login'] = $login;
 			$_SERVER['login'] = $login;
 			$_COOKIE["loginID"] = $login;
 			$_SESSION['ipAddress'] = $_SERVER['REMOTE_ADDR'];
 
-      $_SESSION['err_msg'] .= 'User Access: '.$user_access_level;
+		  if( intval($validate_user) == 1 ){
+              $_SESSION['id'] = $user_id;
+              $_SESSION['name'] = $user_name;
 
-		  if( $validate_user == 1 ){
 						  $_SESSION['session_hash'] = mcrypt_create_iv(16, MCRYPT_DEV_URANDOM);
 							$globalFunctions->setupCookie($user_email, $_SESSION['ipAddress'], $_SESSION['session_hash'], 'A', $routeApp->dbhost, $routeApp->dbname, $routeApp->db_guard_login, $routeApp->db_guard_password);
 							setcookie('loginID', $_SESSION['session_hash'], time() + (86400 * 30), '/');
@@ -85,11 +84,13 @@ if ( $login and $password ){
 					    $globalFunctions->setupCookie($user_email, $_SESSION['ipAddress'], $_SESSION['session_hash'], 'I', $db->dbhost, $db->dbname, $db->db_guard_login, $db->db_guard_password);
 						  $location = "Location: ".$routeApp->app_url;
               $_SESSION['current_page'] = "LOGIN";
+              $_SESSION['err_msg'] = "<div class='alert alert-danger' role='alert'>".$msgStream->badLogin."</div>";
 			    }
 }else{
 			$msg = $msgStream->empty_string;
 			$location = "Location: ".$routeApp->app_url;
       $_SESSION['current_page'] = "LOGIN";
+      $_SESSION['err_msg'] = "<div class='alert alert-danger' role='alert'>".$msgStream->missingInfo."</div>";
  }
 
 header($location);
