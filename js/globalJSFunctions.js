@@ -8,23 +8,26 @@
 */
 
 //log user out after 14 mins of innactivity
+
+var timeOutObj;
+
 timeOutObj = setTimeout(function(){
     localStorage.clear();
     window.location = '../views/logout.php?logout=1';
 
 }, 300000);   //840000 will expire after twenty minutes
 
-$(document).click(function(){
-  if(typeof timeOutObj != "undefined") {
-      clearTimeout(timeOutObj);
-  }
-});
+//$(document).click(function(){
+//  if(typeof timeOutObj != "undefined") {
+//     clearTimeout(timeOutObj);
+//  }
+//});
 
-$(document).ready(function() {
-    $('#dataTables-example').DataTable({
-        responsive: true
-    });
-});
+//function getUser(){
+//  $('#user').load('../views/viewUser.php');
+//}
+
+//getUser();
 
 function getCookie(c_name) {
   if (document.cookie.length > 0) {

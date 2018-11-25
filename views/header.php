@@ -25,9 +25,11 @@
 
     <!-- BOOTSTRAP -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <!-- Morris Charts CSS -->
+    <!-- Morris Charts CSS
     <link href="vendor/morrisjs/morris.css" rel="stylesheet">
+  -->
 
-    <!-- Custom Fonts -->
+    <!-- Custom Fonts
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  -->
   </head>

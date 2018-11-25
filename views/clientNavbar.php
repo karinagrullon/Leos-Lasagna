@@ -8,6 +8,7 @@
 * @software-license: MIT
 */
 -->
+<?php include_once('../services/sessions.php'); ?>
 
 <!-- NAVIGATION -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #fff!important;">
@@ -40,4 +41,36 @@
       <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
+  <!-- PFOILE -->
+  <ul class='nav' style='margin: 3%!important;'>
+        <li class='dropdown dark user-menu'>
+              <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+                <span class='user-name'></span>
+                <div class='green_icon'>
+                    <div id='user'><?php echo $_SESSION['name']; ?></div>
+                </div>
+              </a>
+              <ul class='dropdown-menu'>
+                <li>
+                  <a href='user_profile.html'>
+                    <i class='fa fa-user'></i>
+                    Profile
+                  </a>
+                </li>
+                <li>
+                  <a href='user_profile.html'>
+                    <i class='fa fa-cog'></i>
+                    Settings
+                  </a>
+                </li>
+                <li class='divider'></li>
+                <li>
+                  <a href='sign_in.html'>
+                    <i class='fa fa-sign-out'></i>
+                    Sign out
+                  </a>
+                </li>
+              </ul>
+        </li>
+    </ul>
 </nav>

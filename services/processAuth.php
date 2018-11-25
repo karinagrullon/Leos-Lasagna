@@ -48,20 +48,12 @@ if ( $login and $password ){
 		  if( intval($validate_user) == 1 ){
               $_SESSION['id'] = $user_id;
               $_SESSION['name'] = $user_name;
+              $_SESSION['userAccessLevel'] = $user_access_level;
 
 						  $_SESSION['session_hash'] = mcrypt_create_iv(16, MCRYPT_DEV_URANDOM);
 							$globalFunctions->setupCookie($user_email, $_SESSION['ipAddress'], $_SESSION['session_hash'], 'A', $routeApp->dbhost, $routeApp->dbname, $routeApp->db_guard_login, $routeApp->db_guard_password);
 							setcookie('loginID', $_SESSION['session_hash'], time() + (86400 * 30), '/');
 
-              $sql_client = "SELECT industry_id, client_business_name FROM clients WHERE client_id='$user_client_id' LIMIT 1";
-							$result_client = mysqli_query($GLOBALS['link'], $sql_client);
-							$row_client = $result_client->fetch_array(MYSQLI_ASSOC);
-
-							$industry = $row_client["industry_id"];
-							$client_name = $row_client["client_business_name"];
-
-							$_SESSION['industry'] = $industry;
-							$_SESSION['client_name'] = $client_name;
 
       				switch( intval($user_access_level) ){
 								case 1:
