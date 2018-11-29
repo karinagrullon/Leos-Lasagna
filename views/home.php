@@ -48,59 +48,55 @@ echo $header;
 				</a>
 	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 <?php
+				//Query access control list table
+				$sqlMenu = "SELECT `access_control_list`.`menu_item` FROM `access_control_list`
+										WHERE `access_control_list`.`access_level`='".$_SESSION['userAccessLevel']."'
+										GROUP BY `access_control_list`.`menu_item` ASC;";
+
+				$resultMenu = mysqli_query($GLOBALS['link'], $sqlMenu);
+				//Populate access control items 
+				while($rowMenu = $resultMenu->fetch_array(MYSQLI_ASSOC)){
+							echo "<a class='dropdown-item' href='#'>".$rowMenu['menu_item']."</a>";
+				}
+?>
+				</div>
+				      </li>
+				    </ul>
+				    <form class='form-inline my-2 my-lg-0'>
+				      <input class='form-control mr-sm-2' type='search' placeholder='Track Deliveries' aria-label='Search'>
+				      <button class='btn btn-outline-danger my-2 my-sm-0' type='submit'>Search</button>
+				    </form>
+				    <!-- PFOILE -->
+				    <ul class='nav' style='margin: 3%!important;'>
+				          <li class='dropdown dark user-menu'>
+				                <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
+				                  <span class='user-name'></span>
+				                  <div class='green_icon'>
+				                  		<div id='user'><?php echo $_SESSION['name']; ?></div>
+													</div>
+				                </a>
+				                <ul class='dropdown-menu'>
+				                  <li>
+				                    <a class='dropdown-item' href='profile.php'>
+				                      <i class='fa fa-user'></i>
+				                      Profile
+				                    </a>
+				                  </li>
+				                  <li class='divider'></li>
+				                  <li>
+				                    <a class='dropdown-item' href='logout.php?logout=1'>
+				                      <i class='fa fa-sign-out'></i>
+				                      Sign out
+				                    </a>
+				                  </li>
+				                </ul>
+				          </li>
+				      </ul>
+				  </div>
+				</nav>
+<?php
 	if($_SESSION['user_type'] == "ADMIN"){
-		$sqlMenu = "SELECT `access_control_list`.`menu_item` FROM `access_control_list`
-								WHERE `access_control_list`.`access_level`='".$_SESSION['userAccessLevel']."'
-								GROUP BY `access_control_list`.`menu_item` ASC;";
-
-		$resultMenu = mysqli_query($GLOBALS['link'], $sqlMenu);
-
-		while($rowMenu = $resultMenu->fetch_array(MYSQLI_ASSOC)){
-					echo "<a class='dropdown-item' href='#'>".$rowMenu['menu_item']."</a>";
-		}
-		echo "<a class='dropdown-item' href='logout.php?logout=1'>Log Out</a>
-		        </div>
-		      </li>
-		    </ul>
-		    <form class='form-inline my-2 my-lg-0'>
-		      <input class='form-control mr-sm-2' type='search' placeholder='Track Deliveries' aria-label='Search'>
-		      <button class='btn btn-outline-danger my-2 my-sm-0' type='submit'>Search</button>
-		    </form>
-		    <!-- PFOILE -->
-		    <ul class='nav' style='margin: 3%!important;'>
-		          <li class='dropdown dark user-menu'>
-		                <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
-		                  <span class='user-name'></span>
-		                  <div class='green_icon'>
-		                  		<div id='user'>".$_SESSION['name']."</div>
-											</div>
-		                </a>
-		                <ul class='dropdown-menu'>
-		                  <li>
-		                    <a href='user_profile.html'>
-		                      <i class='fa fa-user'></i>
-		                      Profile
-		                    </a>
-		                  </li>
-		                  <li>
-		                    <a href='user_profile.html'>
-		                      <i class='fa fa-cog'></i>
-		                      Settings
-		                    </a>
-		                  </li>
-		                  <li class='divider'></li>
-		                  <li>
-		                    <a href='sign_in.html'>
-		                      <i class='fa fa-sign-out'></i>
-		                      Sign out
-		                    </a>
-		                  </li>
-		                </ul>
-		          </li>
-		      </ul>
-		  </div>
-		</nav>
-		<div class='home-all'>
+		echo "<div class='home-all'>
 		  <div class='jumbotron jumbotron-fluid text-center'>
 		    <div class='container'>
 		      <h1 class='display-4'>Today's Deliveries</h1>
@@ -132,15 +128,11 @@ echo $header;
 		  </div>
 		</div>";
 	}else{
-		$navbar = file_get_contents('clientNavbar.php');
-		$body = file_get_contents('clientHomeBody.php');
 
-		/* begin navigation structure */
-		echo $navbar;
-		/* end navigation structure */
-
-		echo $body;
 	}
+
+
+
 
 
 /* begin footer */
