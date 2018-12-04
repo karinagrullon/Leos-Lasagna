@@ -29,6 +29,17 @@ timeOutObj = setTimeout(function(){
 
 //getUser();
 
+function validateUserRegistration(form){
+  var userName = form.userName.value;
+  var userEmail = form.userEmail.value;
+
+  if( userName && userEmail ){
+    document.location.href = "registerUser.php?userName=" + userName + "&userEmail=" + userEmail;
+  }else{
+    $("#modalDataInputIssue").modal('show');
+  }
+}
+
 function getCookie(c_name) {
   if (document.cookie.length > 0) {
     c_start = document.cookie.indexOf(c_name + "=");

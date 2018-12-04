@@ -217,5 +217,13 @@ class globalFunctions{
 			$duedate = intval($d).' '.$month.' '.$y;
 			return $duedate;
 	}
+	
+	public function registerUser($name, $email, $type, $customer){
+			$sql = "INSERT INTO users(user_id, user_type_id, user_client_id, user_name, user_middle_initial, user_last, user_email, user_phone,
+													user_mobile, user_address, user_city, user_state, user_zipcode, user_token, user_salt, user_login, user_password)
+							VALUES(NULL, '{$type}', '{$customer}', '{$name}', NULL, NULL, '{$email}', NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+											'{$salt}', '{$login}', '{$password}');";
+			mysqli_query($GLOBALS['link'], $sql);
+	}
 }
 ?>

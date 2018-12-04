@@ -9,6 +9,7 @@
 */
 
 define( 'RESTRICTED', true );
+
 $ds = DIRECTORY_SEPARATOR;
 $base_dir = realpath(dirname(__FILE__)  . $ds . '..') . $ds;
 $sessions = '{$base_dir}services{$ds}sessions.php';
@@ -54,7 +55,7 @@ echo $header;
 										GROUP BY `access_control_list`.`menu_item` ASC;";
 
 				$resultMenu = mysqli_query($GLOBALS['link'], $sqlMenu);
-				//Populate access control items 
+				//Populate access control items
 				while($rowMenu = $resultMenu->fetch_array(MYSQLI_ASSOC)){
 							echo "<a class='dropdown-item' href='#'>".$rowMenu['menu_item']."</a>";
 				}

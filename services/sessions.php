@@ -54,13 +54,13 @@
        header($location);
        exit();
      }
-   }else {
+   }/*else {
       if ( isset( $_SESSION['id'] ) ) {
         $location = "Location: ".$routeApp->page_root."home.php";
         header($location);
         exit();
       }
-    }
+    }*/
 
    $GLOBALS['link'] = mysqli_connect( $routeApp->dbhost, $routeApp->db_guard_login, $routeApp->db_guard_password, $routeApp->dbname );
 
