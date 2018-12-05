@@ -32,6 +32,9 @@
     $digest = $_COOKIE['loginID'];
     $ip = $_SESSION['ipAddress'];
     $hash = $_SESSSION['session_hash'];
+    $GLOBALS['warningMsg'] = "<div class='alert alert-danger' role='alert'>";
+    $GLOBALS['successMsg'] = "<div class='alert alert-success' role='alert'>";
+    $GLOBALS['closeMsg'] = "</div>";
 
   	ini_set( 'session.use_only_cookies', TRUE );
   	ini_set( 'session.use_trans_sid', FALSE );

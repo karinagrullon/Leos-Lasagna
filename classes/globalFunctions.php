@@ -121,7 +121,7 @@ class globalFunctions{
 		mysqli_query($GLOBALS['link'], $sql);
 	}
 
-	public function emailUserPassword($name, $last, $user_type, $email, $login, $password, $copyright, $signature, $app_email, $admin_email, $software_name, $app_url){
+	public function emailUserPassword($name, $user_type, $company, $email, $password, $software_name, $app_url, $app_email){
 			if (strtoupper(substr(PHP_OS,0,3)=='WIN')) {
   				$eol="\r\n";
 			} elseif (strtoupper(substr(PHP_OS,0,3)=='MAC')) {
@@ -137,7 +137,7 @@ class globalFunctions{
 			$url = $app_url."login.php?login=".$login."&password=".$password;
 
 			//message
-			$msg .= "Hi ".$name.' '.$last.'<br/><br/>';
+			$msg .= "Hi ".$name.'<br/><br/>';
 			$msg .= "You have been set up with a new account in ".$software_name." as a ".$user_type.". You may start using it now using the information below.<br/><br/>";
 			$msg .= "<table width='70%' border='0' cellspacing='2' cellpadding='1'>
 					 <tr><td><a img src=".$app_url."images/logo.jpg.</td></tr>
@@ -147,7 +147,7 @@ class globalFunctions{
 					  </tr>
 					  <tr>
 						<td>Username</td>
-						<td><center>".$login."</center></td>
+						<td><center>".$email."</center></td>
 					  </tr>
 					  <tr>
 						<td>Password</td>
@@ -158,10 +158,7 @@ class globalFunctions{
 						<td><a href=".$url."><center>Click Here</center></a></td>
 					  </tr>
 					</table><br/>";
-			$msg .= "If you are having issues accessing the system, please contact your administrator at ".$admin_email."<br/>";
-            $msg .= "<hr/><br/>";
-  			$msg .= $signature."<br/>";
-			$msg .= $copyright."<br/>";
+
 
 			$to = $email;
 
@@ -218,13 +215,31 @@ class globalFunctions{
 			return $duedate;
 	}
 
+	public function getCustomerId($company){
+			$sql = "SELECT `customerid` FROM `customer`
+							INNER JOIN `user_type` ON `customer`.`customertypeid`=`user_type`.`user_type_id`
+							WHERE `customer`.`customerName` = '$company'";
+			$result =  mysqli_query($GLOBALS['link'], $sql);
+			$row = $result->fetch_array(MYSQLI_ASSOC);
 
-	public function registerUser($name, $email, $type, $customer){
+			return $row['customerid'];
+	}
+
+	public function getCustomerTypeId($type){
+			$sql = "SELECT `user_type_id` FROM `user_type`
+							WHERE `user_type`.`user_description` = '$type'";
+			$result =  mysqli_query($GLOBALS['link'], $sql);
+			$row = $result->fetch_array(MYSQLI_ASSOC);
+
+			return $row['user_type_id'];
+	}
+
+	public function registerUser($name, $email, $type, $company, $address, $city, $state, $zip, $phone, $encrypted_password, $salt){
 			$sql = "INSERT INTO users(user_id, user_type_id, user_client_id, user_name, user_middle_initial, user_last, user_email, user_phone,
 													user_mobile, user_address, user_city, user_state, user_zipcode, user_token, user_salt, user_login, user_password)
-							VALUES(NULL, '{$type}', '{$customer}', '{$name}', NULL, NULL, '{$email}', NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-											'{$salt}', '{$login}', '{$password}');";
-			return mysqli_query($GLOBALS['link'], $sql) ? TRUE : FALSE;
+							VALUES(NULL, '{$type}', '{$company}', '{$name}', NULL, NULL, '{$email}', NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+											'{$salt}', '{$email}', '{$encrypted_password}');";
+			return mysqli_query($GLOBALS['link'], $sql) ? "1" : "0";
 	}
 }
 ?>

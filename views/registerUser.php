@@ -28,7 +28,7 @@ $modals = file_get_contents('modals.php');
 <!-- begin body -->
 <div class="container" style="max-width: 550px!important;">
 <center><a href="/" target="_self"><img class="login-logo" alt="logo" src="../images/Logo.png" width="200" height="200"/></a></center>
-		<form id="checkRegistration" action="../../services/processRegistration.php" method="POST">
+		<form id="checkRegistration" action="../../development/services/processRegistration.php" method="POST">
 				<div class="form-group">
 			    <label for="formGroupExampleInput">Name</label>
 			    <input type="text" class="form-control" name="userName" placeholder="Enter name" required>
@@ -36,6 +36,26 @@ $modals = file_get_contents('modals.php');
 				<div class="form-group">
 					<label for="exampleInputEmail1">Email address</label>
 					<input type="email" class="form-control" name="userEmail" placeholder="Enter email" required>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Address</label>
+					<input type="text" class="form-control" name="userAddress" placeholder="Enter address" required>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">City</label>
+					<input type="text" class="form-control" name="userCity" placeholder="Enter city" required>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">State</label>
+					<input type="text" class="form-control" name="userState" placeholder="Enter state (eq. NY)" required>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Zipcode</label>
+					<input type="text" class="form-control" name="userZip" placeholder="Enter zipcode (eq. 10469)" required>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Phone</label>
+					<input type="text" class="form-control" name="userPhone" placeholder="Enter phone (###-###-####)" required>
 				</div>
 <?php
 			if($_SESSION['user_type'] == "ADMIN"){
@@ -55,10 +75,12 @@ $modals = file_get_contents('modals.php');
 												style="color: #fff; background-color: #f96566!important; border-color: #f96566!important;">
 												Register
 								</button>
+								<br/>
+								<?php echo $_SESSION['err_msg']; ?>
 				</center>
 		</form>
 </div> <!-- /container -->
-<?php echo $_SESSION['err_msg']; ?>
+
 <!-- end body -->
 
 <?php echo $modals; ?>
