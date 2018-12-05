@@ -30,13 +30,13 @@ timeOutObj = setTimeout(function(){
 //getUser();
 
 function validateUserRegistration(form){
-  var userName = form.userName.value;
-  var userEmail = form.userEmail.value;
+var thisName = form.userName.value;
+var thisEmail = form.userEmail.value;//
 
-  if( userName && userEmail ){
-    document.location.href = "registerUser.php?userName=" + userName + "&userEmail=" + userEmail;
+  if( thisName != "" && thisEmail != "" ){
+      document.location.href = "registerUser.php?Name=" + thisName + "&Email=" + thisEmail;
   }else{
-    $("#modalDataInputIssue").modal('show');
+      $("#modalGenMsg").modal('show');
   }
 }
 

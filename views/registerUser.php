@@ -18,42 +18,24 @@ require($sessions);
 
 $header = file_get_contents('header.php');
 $footer = file_get_contents('footer.php');
+$modals = file_get_contents('modals.php');
 
 	/* begin header */
 	echo $header;
 	/* end header */
 
-	/* This only fires when user is being registered */
-	if(isset($_GET['userName']) && isset($_GET['userEmail'])){
-		$name = $_GET['userName'];
-		$email = $_GET['userEmail'];
-
-		//1. check if user is already user already user_already_registered
-		//2. Generate $salt
-		//3. Create random password
-		//4. Encrypt password
-		//5. Register users
-		//6. Send E-mail notification to the user 
-		$ok = registerUser($name, $email);
-
-		if($ok){
-			$_SESSION['err_msg'] = "Successful registration";
-		}
-	}
-	/* This only fires when user is being registered */
-
 ?>
 <!-- begin body -->
 <div class="container" style="max-width: 550px!important;">
 <center><a href="/" target="_self"><img class="login-logo" alt="logo" src="../images/Logo.png" width="200" height="200"/></a></center>
-		<form role="form" id="registrationForm" method="post">
+		<form id="checkRegistration" action="../../services/processRegistration.php" method="POST">
 				<div class="form-group">
 			    <label for="formGroupExampleInput">Name</label>
-			    <input type="text" class="form-control" id="userName" placeholder="Enter name" required>
+			    <input type="text" class="form-control" name="userName" placeholder="Enter name" required>
   			</div>
 				<div class="form-group">
 					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
+					<input type="email" class="form-control" name="userEmail" placeholder="Enter email" required>
 				</div>
 <?php
 			if($_SESSION['user_type'] == "ADMIN"){
@@ -69,17 +51,17 @@ $footer = file_get_contents('footer.php');
 				  			</div>
 <?php 	}	  ?>
 				<br/>
-				<center><button type="submit" class="btn btn-lg btn-primary btn-block" onclick="validateUserRegistration(this.form)"
+				<center><button type="submit" class="btn btn-lg btn-primary btn-block"
 												style="color: #fff; background-color: #f96566!important; border-color: #f96566!important;">
 												Register
 								</button>
 				</center>
 		</form>
 </div> <!-- /container -->
-
+<?php echo $_SESSION['err_msg']; ?>
 <!-- end body -->
 
-
+<?php echo $modals; ?>
 <!-- begin footer -->
 <?php echo $footer; ?>
 <!-- end footer -->
