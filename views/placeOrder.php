@@ -23,6 +23,9 @@ $modals = file_get_contents('modals.php');
 	echo $header;
 	/* end header */
 
+	/* set current page */
+	$GLOBALS['currentPage'] = PLACEORDER;
+
 	if($_SESSION['user_type'] && isset($_SESSION['id'])){
 		include_once('menu.php');
 		?>
@@ -86,6 +89,8 @@ $modals = file_get_contents('modals.php');
 						<!-- end body -->
 <?php
 	}else{
+		$_SESSION['err_msg'] = "You need to register/login before you can place an order!";
+		$GLOBALS['warningMsg'].$_SESSION['err_msg'].$GLOBALS['closeMsg'];
 		include_once('login.php');
 	}
 ?>

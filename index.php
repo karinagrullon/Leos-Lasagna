@@ -8,12 +8,16 @@
 * @software-license: MIT
 */
 
+	/* set state */
 	require('services/sessions.php');
 
   $header = file_get_contents('views/header.php');
 
   /* push header */
 	echo $header;
+
+	/* set current page */
+	$GLOBALS['currentPage'] = INDEX;
 ?>
 
 	<body>

@@ -25,6 +25,9 @@ $footer = file_get_contents('footer.php');
 echo $header;
 /* end header */
 
+/* set current page */
+$GLOBALS['currentPage'] = HOME;
+
 /* add menu if user is an admin only */
 if($_SESSION['user_type'] && isset($_SESSION['id'])){
 	include_once('menu.php');

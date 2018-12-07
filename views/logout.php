@@ -13,15 +13,18 @@
 	$base_dir = realpath(dirname(__FILE__)  . $ds . '..') . $ds;
 	$sessions = "{$base_dir}services{$ds}sessions.php";
 
+	/* get state */
 	include_once('../services/sessions.php');
+
+	/* set current page */
+	$GLOBALS['currentPage'] = LOGOUT;
 
 	if(isset($_GET['logout'])){
 		$_SESSION['logout'] = $_GET['logout'];
 	}
 
 	if($_SESSION['logout'] == 1){
-		$_SESSION['err_msg'] = "You have been logged out ".$_GET['logout'];
-		echo $_SESSION['err_msg'];
+		$_SESSION['err_msg'] = "You have been logged out ";
 
 		$sql_cookie_update = "UPDATE user_access_log SET status = 'C' WHERE login = '".$_SESSION['login']."' AND status = 'A';";
 		mysqli_query($GLOBALS['link'], $sql_cookie_update);
@@ -30,10 +33,6 @@
 		session_unset();
 		session_destroy();
 
-
-
-		$location = "Location: ".$routeApp->app_url;
-		header($location);
-		exit();
+		include_once('login.php');
 	}
 ?>

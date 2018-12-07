@@ -24,6 +24,9 @@ $modals = file_get_contents('modals.php');
 	echo $header;
 	/* end header */
 
+	/* set current page */
+	$GLOBALS['currentPage'] = REGISTERUSER;
+
 	/* add menu if user is an admin only */
 	if($_SESSION['user_type'] != "REGULAR" && isset($_SESSION['id'])){
 		include_once('menu.php');
@@ -32,11 +35,6 @@ $modals = file_get_contents('modals.php');
 	}
 ?>
 <!-- begin body -->
-<?php
-	if(!$_SESSION['user_type']){
-		echo '<center><a href="/" target="_self"><img class="login-logo" alt="logo" src="../images/Logo.png" width="200" height="200"/></a></center>';
-	}
-?>
 <div class='jumbotron jumbotron-fluid text-white'>
 	<div class="container" style="max-width: 550px!important;">
 		<form id="checkRegistration" action="../../development/services/processRegistration.php" method="POST">
@@ -85,7 +83,7 @@ $modals = file_get_contents('modals.php');
 				<center><button type="submit" class="btn btn-outline-light">
 												Register
 								</button>
-								<br/>
+								<br/><br/>
 								<?php echo $_SESSION['err_msg']; ?>
 				</center>
 		</form>
