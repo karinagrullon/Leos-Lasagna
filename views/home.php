@@ -26,8 +26,10 @@ echo $header;
 /* end header */
 
 /* add menu if user is an admin only */
-if($_SESSION['user_type'] == "ADMIN"){
+if($_SESSION['user_type'] && isset($_SESSION['id'])){
 	include_once('menu.php');
+}else{
+	include_once('publicNav.php');
 }
 
 	if($_SESSION['user_type'] == "ADMIN"){
@@ -73,9 +75,9 @@ if($_SESSION['user_type'] == "ADMIN"){
 
       <div class='jumbotron jumbotron-fluid text-center'>
         <div class='container'>
-          <h1 class='display-4'>Try One Of Our Best Selling Lasagne</h1>
-          <!-- This part might need some back-end. Might need to go to the database to find this info-->
-          <p class='lead'>(insert best selling lasagne)</p>
+          <h1 class='display-4'>Try One Of Our Best Selling Lasagne</h1>";
+        	include_once('bestSellerProducts.php');
+      echo "<p class='lead'>(insert best selling lasagne)</p>
         </div>
       </div>
     </div>";

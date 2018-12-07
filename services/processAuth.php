@@ -74,13 +74,13 @@ if ( $login and $password ){
               }
 				  }else{
 					    $globalFunctions->setupCookie($user_email, $_SESSION['ipAddress'], $_SESSION['session_hash'], 'I', $db->dbhost, $db->dbname, $db->db_guard_login, $db->db_guard_password);
-						  $location = "Location: ".$routeApp->app_url;
+						  $location = "Location: ".$routeApp->page_root."login.php";
               $_SESSION['current_page'] = "LOGIN";
               $_SESSION['err_msg'] = "<div class='alert alert-danger' role='alert'>".$msgStream->badLogin."</div>";
 			    }
 }else{
 			$msg = $msgStream->empty_string;
-			$location = "Location: ".$routeApp->app_url;
+			$location = "Location: ".$routeApp->page_root."login.php";
       $_SESSION['current_page'] = "LOGIN";
       $_SESSION['err_msg'] = "<div class='alert alert-danger' role='alert'>".$msgStream->missingInfo."</div>";
  }

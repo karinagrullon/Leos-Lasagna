@@ -23,66 +23,72 @@ $modals = file_get_contents('modals.php');
 	echo $header;
 	/* end header */
 
-	include_once('menu.php');
+	if($_SESSION['user_type'] && isset($_SESSION['id'])){
+		include_once('menu.php');
+		?>
+						<!-- begin body -->
+						<div class='jumbotron jumbotron-fluid text-white'>
+								<div class="container" style="max-width: 550px!important;">
+										<form id="checkRegistration" action="../../development/services/processRegistration.php" method="POST">
+												<div class="form-group">
+											    <label for="formGroupExampleInput">Name</label>
+											    <input type="text" class="form-control" name="userName" placeholder="Enter name" required>
+								  			</div>
+												<div class="form-group">
+													<label for="exampleInputEmail1">Email address</label>
+													<input type="email" class="form-control" name="userEmail" placeholder="Enter email" required>
+												</div>
+												<div class="form-group">
+													<label for="exampleInputEmail1">Address</label>
+													<input type="text" class="form-control" name="userAddress" placeholder="Enter address" required>
+												</div>
+												<div class="form-group">
+													<label for="exampleInputEmail1">City</label>
+													<input type="text" class="form-control" name="userCity" placeholder="Enter city" required>
+												</div>
+												<div class="form-group">
+													<label for="exampleInputEmail1">State</label>
+													<input type="text" class="form-control" name="userState" placeholder="Enter state (eq. NY)" required>
+												</div>
+												<div class="form-group">
+													<label for="exampleInputEmail1">Zipcode</label>
+													<input type="text" class="form-control" name="userZip" placeholder="Enter zipcode (eq. 10469)" required>
+												</div>
+												<div class="form-group">
+													<label for="exampleInputEmail1">Phone</label>
+													<input type="text" class="form-control" name="userPhone" placeholder="Enter phone (###-###-####)" required>
+												</div>
+						<?php
+									if($_SESSION['user_type'] == "ADMIN"){
+						?>
+														<div class="form-group">
+														    <label for="exampleFormControlSelect2">Client Type</label>
+														    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" required>
+																	<option>CHOOSE ONE</option>
+														      <option>ADMINISTRATOR</option>
+														      <option>AIRLINE</option>
+														      <option>HOTEL</option>
+														    </select>
+										  			</div>
+						<?php 	}	  ?>
+												<br/>
+												<center><button type="submit" class="btn btn-outline-light">
+																				Place Order
+																</button>
+																<br/><br/>
+																<?php echo $_SESSION['err_msg']; ?>
+												</center>
+										</form>
+								</div> <!-- /container -->
 
-?>
-<!-- begin body -->
-<div class='jumbotron jumbotron-fluid text-white'>
-		<div class="container" style="max-width: 550px!important;">
-				<form id="checkRegistration" action="../../development/services/processRegistration.php" method="POST">
-						<div class="form-group">
-					    <label for="formGroupExampleInput">Name</label>
-					    <input type="text" class="form-control" name="userName" placeholder="Enter name" required>
-		  			</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Email address</label>
-							<input type="email" class="form-control" name="userEmail" placeholder="Enter email" required>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Address</label>
-							<input type="text" class="form-control" name="userAddress" placeholder="Enter address" required>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">City</label>
-							<input type="text" class="form-control" name="userCity" placeholder="Enter city" required>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">State</label>
-							<input type="text" class="form-control" name="userState" placeholder="Enter state (eq. NY)" required>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Zipcode</label>
-							<input type="text" class="form-control" name="userZip" placeholder="Enter zipcode (eq. 10469)" required>
-						</div>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Phone</label>
-							<input type="text" class="form-control" name="userPhone" placeholder="Enter phone (###-###-####)" required>
-						</div>
+						</div> <!-- jumbotron -->
+
+						<!-- end body -->
 <?php
-			if($_SESSION['user_type'] == "ADMIN"){
+	}else{
+		include_once('login.php');
+	}
 ?>
-								<div class="form-group">
-								    <label for="exampleFormControlSelect2">Client Type</label>
-								    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" required>
-											<option>CHOOSE ONE</option>
-								      <option>ADMINISTRATOR</option>
-								      <option>AIRLINE</option>
-								      <option>HOTEL</option>
-								    </select>
-				  			</div>
-<?php 	}	  ?>
-						<br/>
-						<center><button type="submit" class="btn btn-outline-light">
-														Register
-										</button>
-										<br/>
-										<?php echo $_SESSION['err_msg']; ?>
-						</center>
-				</form>
-		</div> <!-- /container -->
-</div> <!-- jumbotron -->
-
-<!-- end body -->
 
 <?php echo $modals; ?>
 <!-- begin footer -->

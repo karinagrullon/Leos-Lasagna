@@ -8,34 +8,40 @@
 * @software-license: MIT
 */
 
-	require('services/sessions.php');
+	include_once('../services/sessions.php');
 
-  $header = file_get_contents('views/header.php');
+  $header = file_get_contents('header.php');
 
   /* push header */
 	echo $header;
 ?>
 
   <!-- Custom styles for this template -->
-  <link href="css/signin.css" rel="stylesheet">
+  <link href="../css/signin.css" rel="stylesheet">
 
+	<?php require_once('publicNav.php');  ?>
 <body>
+	<div class='jumbotron jumbotron-fluid text-white'>
     <div class="container">
-    <center><img class="login-logo" alt="logo" src="images/Logo.png" width="200" height="200"/></center>
-      <form id="registerUser" action="services/processAuth.php" method="POST">
-        <br/>
+      <form id="registerUser" action="../services/processAuth.php" method="POST">
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" class="form-control" name="userLogin" placeholder="Email address" required autofocus>
         <br/>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" class="form-control" name="userPassword" placeholder="Password" required>
         <br/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+				<div class="row">
+				          <div class="col-sm-6">
+										<a href="registerUser.php" style="color: #fff!important; text-align: left;">
+											<button class="btn btn-outline-light btn-lg btn-block" type="submit">Register</button>
+										</a>
+									</div>
+									<div class="col-sm-6"><button class="btn btn-primary-light btn-lg btn-block" type="submit">Log in</button></div>
+				</div>
          <br/>
-				 <a href="views/registerUser.php">Register</a>
       </form>
 					<?php echo $_SESSION['err_msg']; ?>
     </div> <!-- /container -->
-
+ </div><!-- /jumbotron -->
   </body>
 </html>

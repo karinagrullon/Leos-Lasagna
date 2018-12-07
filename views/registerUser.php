@@ -25,17 +25,20 @@ $modals = file_get_contents('modals.php');
 	/* end header */
 
 	/* add menu if user is an admin only */
-	if($_SESSION['user_type'] == "ADMIN"){
+	if($_SESSION['user_type'] != "REGULAR" && isset($_SESSION['id'])){
 		include_once('menu.php');
+	}else{
+		include_once('publicNav.php');
 	}
 ?>
 <!-- begin body -->
-<div class="container" style="max-width: 550px!important;">
 <?php
 	if(!$_SESSION['user_type']){
 		echo '<center><a href="/" target="_self"><img class="login-logo" alt="logo" src="../images/Logo.png" width="200" height="200"/></a></center>';
 	}
 ?>
+<div class='jumbotron jumbotron-fluid text-white'>
+	<div class="container" style="max-width: 550px!important;">
 		<form id="checkRegistration" action="../../development/services/processRegistration.php" method="POST">
 				<div class="form-group">
 			    <label for="formGroupExampleInput">Name</label>
@@ -79,15 +82,15 @@ $modals = file_get_contents('modals.php');
 				  			</div>
 <?php 	}	  ?>
 				<br/>
-				<center><button type="submit" class='btn btn-outline-light'
-												style="color: #fff; background-color: #f96566!important; border-color: #f96566!important;">
+				<center><button type="submit" class="btn btn-outline-light">
 												Register
 								</button>
 								<br/>
 								<?php echo $_SESSION['err_msg']; ?>
 				</center>
 		</form>
-</div> <!-- /container -->
+	</div> <!-- /container -->
+</div> <!-- jumbotron -->
 
 <!-- end body -->
 
