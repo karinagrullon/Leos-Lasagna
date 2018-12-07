@@ -24,10 +24,18 @@ $modals = file_get_contents('modals.php');
 	echo $header;
 	/* end header */
 
+	/* add menu if user is an admin only */
+	if($_SESSION['user_type'] == "ADMIN"){
+		include_once('menu.php');
+	}
 ?>
 <!-- begin body -->
 <div class="container" style="max-width: 550px!important;">
-<center><a href="/" target="_self"><img class="login-logo" alt="logo" src="../images/Logo.png" width="200" height="200"/></a></center>
+<?php
+	if(!$_SESSION['user_type']){
+		echo '<center><a href="/" target="_self"><img class="login-logo" alt="logo" src="../images/Logo.png" width="200" height="200"/></a></center>';
+	}
+?>
 		<form id="checkRegistration" action="../../development/services/processRegistration.php" method="POST">
 				<div class="form-group">
 			    <label for="formGroupExampleInput">Name</label>
@@ -71,7 +79,7 @@ $modals = file_get_contents('modals.php');
 				  			</div>
 <?php 	}	  ?>
 				<br/>
-				<center><button type="submit" class="btn btn-lg btn-primary btn-block"
+				<center><button type="submit" class='btn btn-outline-light'
 												style="color: #fff; background-color: #f96566!important; border-color: #f96566!important;">
 												Register
 								</button>

@@ -25,77 +25,11 @@ $footer = file_get_contents('footer.php');
 echo $header;
 /* end header */
 
-?>
+/* add menu if user is an admin only */
+if($_SESSION['user_type'] == "ADMIN"){
+	include_once('menu.php');
+}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #fff!important;">
-	<a class="navbar-brand" href="home.php">
-		<div class="green_icon"></div>
-		<img alt="logo" src="../images/Logo.png" width="100" height="100"/>
-	</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-	aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-
-	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-				<a class="nav-link" href="/">Todays Deliveries</a>
-			</li>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false">
-					Tools
-				</a>
-	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-<?php
-				//Query access control list table
-				$sqlMenu = "SELECT `access_control_list`.`menu_item` FROM `access_control_list`
-										WHERE `access_control_list`.`access_level`='".$_SESSION['userAccessLevel']."'
-										GROUP BY `access_control_list`.`menu_item` ASC;";
-
-				$resultMenu = mysqli_query($GLOBALS['link'], $sqlMenu);
-				//Populate access control items
-				while($rowMenu = $resultMenu->fetch_array(MYSQLI_ASSOC)){
-							echo "<a class='dropdown-item' href='#'>".$rowMenu['menu_item']."</a>";
-				}
-?>
-				</div>
-				      </li>
-				    </ul>
-				    <form class='form-inline my-2 my-lg-0'>
-				      <input class='form-control mr-sm-2' type='search' placeholder='Track Deliveries' aria-label='Search'>
-				      <button class='btn btn-outline-danger my-2 my-sm-0' type='submit'>Search</button>
-				    </form>
-				    <!-- PFOILE -->
-				    <ul class='nav' style='margin: 3%!important;'>
-				          <li class='dropdown dark user-menu'>
-				                <a class='dropdown-toggle' data-toggle='dropdown' href='#'>
-				                  <span class='user-name'></span>
-				                  <div class='green_icon'>
-				                  		<div id='user'><?php echo $_SESSION['name']; ?></div>
-													</div>
-				                </a>
-				                <ul class='dropdown-menu'>
-				                  <li>
-				                    <a class='dropdown-item' href='profile.php'>
-				                      <i class='fa fa-user'></i>
-				                      Profile
-				                    </a>
-				                  </li>
-				                  <li class='divider'></li>
-				                  <li>
-				                    <a class='dropdown-item' href='logout.php?logout=1'>
-				                      <i class='fa fa-sign-out'></i>
-				                      Sign out
-				                    </a>
-				                  </li>
-				                </ul>
-				          </li>
-				      </ul>
-				  </div>
-				</nav>
-<?php
 	if($_SESSION['user_type'] == "ADMIN"){
 		echo "<div class='home-all'>
 		  <div class='jumbotron jumbotron-fluid text-center'>
@@ -129,7 +63,22 @@ echo $header;
 		  </div>
 		</div>";
 	}else{
+		echo "<div class='home-all'>
+      <div class='jumbotron jumbotron-fluid text-center'>
+        <div class='container'>
+          <h1 class='display-4'>Would You Like To Place An Order?</h1>
+          <a href='placeOrder.php'  target='_self'><button type='button' class='btn btn-outline-light'>Place Order</button></a>
+        </div>
+      </div>
 
+      <div class='jumbotron jumbotron-fluid text-center'>
+        <div class='container'>
+          <h1 class='display-4'>Try One Of Our Best Selling Lasagne</h1>
+          <!-- This part might need some back-end. Might need to go to the database to find this info-->
+          <p class='lead'>(insert best selling lasagne)</p>
+        </div>
+      </div>
+    </div>";
 	}
 
 

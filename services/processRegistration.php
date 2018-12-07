@@ -41,29 +41,25 @@
           //user already exists in the system
           $_SESSION['err_msg'] = $GLOBALS['warningMsg']."This user already exists in the system".$GLOBALS['closeMsg'];
         }else{
-          //new user get data and set him/her up in the system
-          if (defined("CRYPT_BLOWFISH") && CRYPT_BLOWFISH) {
-                //set the encryption algorightm and generate the password's salt
-           			 $salt = '$2y$11$' . substr(md5(uniqid(rand(), true)), 0, 22);
-    			}else{
-    				     $salt = 'NO BLOWFISH';
-    			}
-          //generate a random password of length 12
-          $password = $globalFunctions->generateRandomPassword(12);
-          //encrypt the password
-          $encrypted_password = $globalFunctions->encryptPassword($password, $salt);
-          //get get customer id
-          $customerid = $globalFunctions->getCustomerId($company);
-          //get user type id
-          $customertypeid = $globalFunctions->getCustomerTypeId($type);
-          //register user
-          $ok = $globalFunctions->registerUser($name, $email, $customertypeid, $customerid, $address, $city, $state, $zip, $phone, $encrypted_password, $salt);
-          if($ok == "1"){
-              $globalFunctions->emailUserPassword($name, $type, $company, $email, $password, $configApp->software_name, $configApp->app_url, $configApp->application_email);
-              $_SESSION['err_msg'] = $GLOBALS['successMsg']."You have been successfully registered!".$GLOBALS['closeMsg'];
-          }else{
-              $_SESSION['err_msg'] = $GLOBALS['warningMsg']."Oops something went wrong. Unable to register you today. Try again later!".$GLOBALS['closeMsg'];
-          }
+                //new user get data and set him/her up in the system
+                $salt = $globalFunctions->generateSalt();
+                //generate a random password of length 12
+                $password = $globalFunctions->generateRandomPassword(12);
+                //encrypt the password
+                $encrypted_password = $globalFunctions->encryptPassword($password, $salt);
+                //get get customer id
+                $customerid = $globalFunctions->getCustomerId($company);
+                //get user type id
+                $customertypeid = $globalFunctions->getCustomerTypeId($type);
+                //register user
+                $ok = $globalFunctions->registerUser($name, $email, $customertypeid, $customerid, $address, $city, $state, $zip, $phone, $encrypted_password, $salt);
+
+                if($ok == "1"){
+                    $globalFunctions->emailUserPassword($name, $type, $company, $email, $password, $configApp->software_name, $configApp->app_url, $configApp->application_email);
+                    $_SESSION['err_msg'] = $GLOBALS['successMsg']."You have been successfully registered!".$GLOBALS['closeMsg'];
+                }else{
+                    $_SESSION['err_msg'] = $GLOBALS['warningMsg']."Oops something went wrong. Unable to register you today. Try again later!".$GLOBALS['closeMsg'];
+                }
         }
         $location = "Location: ".$routeApp->page_root."registerUser.php";
   }else{

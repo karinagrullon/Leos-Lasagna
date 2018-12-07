@@ -98,6 +98,16 @@ class globalFunctions{
 		return $dir;
 	}
 
+	public function generateSalt(){
+		if (defined("CRYPT_BLOWFISH") && CRYPT_BLOWFISH) {
+					//set the encryption algorightm and generate the password's salt
+					 $salt = '$2y$11$' . substr(md5(uniqid(rand(), true)), 0, 22);
+		}else{
+					 $salt = 'NO BLOWFISH';
+		}
+		return $salt;
+	}
+
 	public function createDirStruc($dir){
 		$dir1 = $dir."/logos";
 		$dir2 = $dir."/filters";
@@ -155,7 +165,7 @@ class globalFunctions{
 					  </tr>
 					  <tr>
 						<td>Access Link</td>
-						<td><a href=".$url."><center>Click Here</center></a></td>
+						<td><a href=".$app_url."><center>Click Here</center></a></td>
 					  </tr>
 					</table><br/>";
 
@@ -237,8 +247,8 @@ class globalFunctions{
 	public function registerUser($name, $email, $type, $company, $address, $city, $state, $zip, $phone, $encrypted_password, $salt){
 			$sql = "INSERT INTO users(user_id, user_type_id, user_client_id, user_name, user_middle_initial, user_last, user_email, user_phone,
 													user_mobile, user_address, user_city, user_state, user_zipcode, user_token, user_salt, user_login, user_password)
-							VALUES(NULL, '{$type}', '{$company}', '{$name}', NULL, NULL, '{$email}', NULL, NULL, NULL, NULL, NULL, NULL, NULL,
-											'{$salt}', '{$email}', '{$encrypted_password}');";
+							VALUES(NULL, '{$type}', '{$company}', '{$name}', NULL, NULL, '{$email}', NULL, '{$phone}', '{$address}', '{$city}', '{$city}',
+										'{$state}', '{$zip}','{$salt}', '{$email}', '{$encrypted_password}');";
 			return mysqli_query($GLOBALS['link'], $sql) ? "1" : "0";
 	}
 }
