@@ -30,30 +30,67 @@
     <body>
       <div id="map"></div>
       <script>
-        var map;
-        //Location of Leo's Factory
-        var leoFactory = {lat: 40.7891, lng: -73.1350};
+
+        // fake JSON call
         function initMap() {
           map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 40.75, lng: -73.75},
             zoom: 10
           });
 
-          var image = '../images/truck_icon.png';
-          var truck = {
-              url: '../images/truck_icon.png', // url
+          var truckImage = '../images/truck_icon.png';
+          var truckIcon = {
+              url: truckImage, // url
               scaledSize: new google.maps.Size(32, 32), // scaled size
               origin: new google.maps.Point(0,0), // origin
               anchor: new google.maps.Point(0, 0) // anchor
           };
 
-          var marker = new google.maps.Marker({
-            position: leoFactory,
-            map: map,
-            title: "LEO'S FACTORY",
-            icon: truck
-          });
-          marker.setMap(map);
+          var airplaneImage = '../images/airplane_icon.png';
+          var airplaneIcon = {
+              url: airplaneImage, // url
+              scaledSize: new google.maps.Size(40, 40), // scaled size
+              origin: new google.maps.Point(0,0), // origin
+              anchor: new google.maps.Point(0, 0) // anchor
+          };
+
+        function getJSONMarkers() {
+          const markers = [
+            {
+              name:  "GAP-4563",
+              location: [40.6619, -73.5354],
+              icon: truckIcon
+            },
+            {
+              name: "EEV-2967",
+              location: [40.7078, -73.7646],
+              icon: truckIcon
+            },
+            {
+              name: "Airport JFK",
+              location: [40.6495, -73.7915],
+              icon: airplaneIcon
+            },            
+            {
+              name: "Airport LAG",
+              location: [40.765, -73.8716],
+              icon: airplaneIcon
+            },
+          ];
+          return markers;
+        }
+
+          const mapMarkers = getJSONMarkers();
+          
+          for(marker of mapMarkers) {
+            var marker = new google.maps.Marker({
+              map: map,
+              position: new google.maps.LatLng(marker.location[0], marker.location[1]),
+              title: marker.name,
+              icon: marker.icon
+            })
+          }
+
         }
 
       </script>
