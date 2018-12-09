@@ -36,37 +36,100 @@ if($_SESSION['user_type'] && isset($_SESSION['id'])){
 }
 
 	if($_SESSION['user_type'] == "ADMIN"){
-		echo "<div class='home-all'>
-		  <div class='jumbotron jumbotron-fluid text-center'>
-		    <div class='container'>
-		      <h1 class='display-4'>Today's Deliveries</h1>
-		      <table class='table'>
-		        <thead class='thead-light'>
-		          <tr>
-		            <th scope='col'>#</th>
-		            <th scope='col'>Client</th>
-		            <th scope='col'>Address</th>
-		            <th scope='col'>Delivery Time</th>
-		          </tr>
-		        </thead>
-		        <tbody>
-		          <tr>
-		            <th scope='row'>1</th>
-		            <td>Jet Blue</td>
-		            <td>JFK Airport</td>
-		            <td>9:00 AM EST</td>
-		          </tr>
-		          <tr>
-		            <th scope='row'>2</th>
-		            <td>Hilton Hotel</td>
-		            <td>234 W 42nd St, New York, NY 10036</td>
-		            <td>5:00 AM EST</td>
-		          </tr>
-		        </tbody>
-		      </table>
-		    </div>
-		  </div>
-		</div>";
+		$sql_all_deliveries = "SELECT
+															   de.deliverieId,
+															   od.orderId,
+															   ap.airportName AS Airport,
+															   al.airlineName as Airline,
+															   od.deliveryScheduleDate,
+															   od.deliveryScheduleTime,
+															   de.deliveryStatus,
+															   de.delieveryDeparturedate,
+															   de.delieveryDeparturetime,
+															   de.deliveryArrivaldate,
+															   de.deliveryArrivaltime,
+															   dei.deliveriesIntervalsDesc
+															FROM
+															   orders as od,
+															   deliveries as de,
+															   deliveryintervals as dei,
+															   deliveriesspecifics as dee,
+															   airport as ap,
+															   airline as al,
+															   airport_has_airline as aha
+															WHERE
+															   od.orderId = de.orderId
+															   AND od.orderId = dee.orderId
+															   AND de.orderId = dee.orderId
+															   AND od.airportId = ap.airportId
+															   AND dei.deliveryIntervalsId = dee.deliveryIntervalsId
+															   AND aha.airlineId = al.airlineId
+															   AND aha.airportId = ap.airportId
+															ORDER BY de.deliveryArrivaldate, de.deliveryStatus DESC";
+		//process query
+		$result_deliveries = mysqli_query($GLOBALS['link'], $sql_all_deliveries);
+		//draw table header
+		echo '<div class="home-all style="width: 90%;">
+							<div class="jumbotron jumbotron-fluid text-center">
+										<div class="container">
+											<center><h1 class="display-4">Most Recent Deliveries</h1></center>
+										</div>
+								<table width="90%" class="table table-striped table-bordered table-hover" style="opacity: 0.97!important;"" id="dataTables-example">
+									<thead>
+										<tr>
+											<th>Order Id</th>
+											<th>Client</th>
+											<th>Destination</th>
+											<th>Scheduled Date</th>
+											<th>Scheduled Time</th>
+											<th>Departure Time</th>
+											<th>Arrival Time</th>
+											<th>Frequency</th>
+											<th>Status</th>
+											<th>Driver</th>
+										</tr>
+									</thead>
+							<tbody>';
+								 while ( $record = $result_deliveries->fetch_array(MYSQLI_ASSOC) )
+								 {
+											 $id = $record['deliverieId'];
+											 $airport = $record['Airport'];
+											 $airline = $record['Airline'];
+											 $scheduledDate = $record['deliveryScheduleDate'];
+											 $deliveryScheduleTime = $record['deliveryScheduleTime'];
+											 $deliveryStatus = $record['deliveryStatus'];
+											 $delieveryDeparturedate = $record['delieveryDeparturedate'];
+											 $delieveryDeparturetime = $record['delieveryDeparturetime'];
+											 $deliveryArrivaldate = $record['deliveryArrivaldate'];
+											 $deliveryArrivaltime = $record['deliveryArrivaltime'];
+											 $deliveriesIntervalsDesc = $record['deliveriesIntervalsDesc'];
+											 $driver = "";
+
+											 //alternate row colors in table
+											 if($counter % 2 == 1){
+													 $rowSeq = 'odd';
+											 }else{
+													 $rowSeq = 'even';
+											 }
+
+											 echo '<tr class="'.$rowSeq.'odd gradeX">
+											 				<td>'.$id.'</td>
+															<td>'.$airport.'</td>
+															<td>'.$airline.'</td>
+															<td>'.$scheduledDate.'</td>
+															<td>'.$deliveryScheduleTime.'</td>
+															<td>'.$delieveryDeparturetime.'</td>
+															<td>'.$deliveryArrivaltime.'</td>
+															<td>'.$deliveriesIntervalsDesc.'</td>
+															<td>'.$deliveryStatus.'</td>
+															<td>'.$driver.'</td>
+														</tr>';
+								 }//end of while*/
+
+							echo '	</tbody>';
+							echo '</table>';
+							echo '</div>';
+							//end of table
 	}else{
 		echo "<div class='home-all'>
       <div class='jumbotron jumbotron-fluid text-center'>
