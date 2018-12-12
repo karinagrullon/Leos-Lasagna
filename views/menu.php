@@ -30,14 +30,14 @@ echo '<nav class="navbar navbar-expand-lg navbar-light bg-light" style="backgrou
 				</a>
 	<div class="dropdown-menu" aria-labelledby="navbarDropdown">';
 				//Query access control list table
-				$sqlMenu = "SELECT `access_control_list`.`menu_item` FROM `access_control_list`
+				$sqlMenu = "SELECT * FROM `access_control_list`
 										WHERE `access_control_list`.`access_level`='".$_SESSION['userAccessLevel']."'
 										GROUP BY `access_control_list`.`menu_item` ASC;";
 
 				$resultMenu = mysqli_query($GLOBALS['link'], $sqlMenu);
 				//Populate access control items
 				while($rowMenu = $resultMenu->fetch_array(MYSQLI_ASSOC)){
-							echo "<a class='dropdown-item' href='#'>".$rowMenu['menu_item']."</a>";
+							echo "<a class='dropdown-item' href='".$rowMenu['url']."' target='_self'>".$rowMenu['menu_item']."</a>";
 				}
 				echo '</div>
 				      </li>
