@@ -37,7 +37,7 @@
 					<h1 class="display-4">Try One Of Our Best Selling Lasagne</h1>
 					<br/>
 					<!-- This part might need some back-end. Might need to go to the database to find this info-->
-					<p class="lead"><?php include_once('views/bestSellerProducts.php'); ?></p>
+					<p class="lead"><?php include_once('views/publicBestSellerProducts.php'); ?></p>
 				</div>
 			</div>
 
@@ -52,4 +52,5 @@
 			</div>
 		</div>
 	</body>
+	<?php require('views/footer.php'); ?>
 </html>
