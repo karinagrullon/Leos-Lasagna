@@ -11,8 +11,8 @@
 echo '<div class="row">
 
           <div class="col-sm-4">
-          <a href="views/placeOrder.php" target="_self" style="color: #fff;">
-            <img alt="Plain Cheese Lasagna" src="../images/plain_cheese.jpg" width="200" height="150" style="border:4px solid #fff;"/>
+          <a href="placeOrder.php" target="_self" style="color: #fff;">
+            <img alt="Plain Cheese Lasagna" src="../images/plain_cheese.jpg" width="300" height="250" style="border:4px solid #fff;"/>
             <h4>Plain Cheese <span style="color: #000; display: inline-block; font: normal .75em lc-script,cursive;
                                 font-size: .9em;
                                 text-transform: lowercase;
@@ -21,7 +21,7 @@ echo '<div class="row">
             </a>
           </div>
           <div class="col-sm-4">
-            <a href="views/placeOrder.php" target="_self" style="color: #fff;">
+            <a href="placeOrder.php" target="_self" style="color: #fff;">
             <img alt="Spinach Lasagna" src="../images/spinach.jpg" width="300" height="250" style="border:4px solid #fff;"/>
             <h4>Spinach <span style="color: #000; display: inline-block; font: normal .75em lc-script,cursive;
                                 font-size: .9em;
@@ -31,7 +31,7 @@ echo '<div class="row">
             </a>
           </div>
           <div class="col-sm-4">
-          <a href="views/placeOrder.php" target="_self" style="color: #fff;">
+          <a href="placeOrder.php" target="_self" style="color: #fff;">
             <img alt="Vegetarian Lasagna" src="../images/vegetarian.jpg" width="300" height="250" style="border:4px solid #fff;"/>
             <h4>Vegetarian <span style="color: #000; display: inline-block; font: normal .75em lc-script,cursive;
                                 font-size: .9em;
